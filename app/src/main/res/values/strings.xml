@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Collectaholic</string>
+    <string name="collectable_name_hint">Enter a name for the Amiibo.</string>
+    <string name="collectable_series_hint">Enter the Amiibo series.</string>
+    <string name="collectable_name_label">Name</string>
+    <string name="collectable_series_label">Series</string>
+    <string name="date_picker_title">Date collected:</string>
+    <string name="new_collectable">New Amiibo</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$d Amiibos</string>
+    <string name="collectable_share_text">Share Amiibo</string>
+    <string name="collectable_share">%1$s! The Amiibo was collected on %2$s. %3$s, and %4$s</string>
+    <string name="collectable_share_subject">Check out my Amiibo!</string>
+    <string name="send_share">Send Amiibo via</string>
 </resources>
