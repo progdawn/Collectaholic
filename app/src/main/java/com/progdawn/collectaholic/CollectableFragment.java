@@ -45,15 +45,12 @@ public class CollectableFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
 
     private static final int REQUEST_DATE = 0;
-    //private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_PHOTO = 1;
 
     private Collectable mCollectable;
     private File mPhotoFile;
     private EditText mNameField;
     private Button mDateButton;
-    //private CheckBox mSolvedCheckBox;
-    //private Button mSuspectButton;
     private Button mShareButton;
     private ImageButton mPhotoButton;
     private ImageView mPhotoView;
@@ -84,27 +81,7 @@ public class CollectableFragment extends Fragment {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCollectable.setDate(date);
             updateDate();
-        }
-        /*else if(requestCode == REQUEST_CONTACT && data != null){
-            Uri contactUri = data.getData();
-            String[] queryFields = new String[]{ ContactsContract.Contacts.DISPLAY_NAME};
-
-            Cursor c = getActivity().getContentResolver().query(contactUri, queryFields, null, null, null);
-
-            try{
-                if(c.getCount() == 0){
-                    return;
-                }
-
-                c.moveToFirst();
-                String suspect = c.getString(0);
-                mCrime.setSuspect(suspect);
-                mSuspectButton.setText(suspect);
-            }finally{
-                c.close();
-            }
-        }*/
-        else if (requestCode == REQUEST_PHOTO){
+        }else if (requestCode == REQUEST_PHOTO){
             Uri uri = FileProvider.getUriForFile(getActivity(), "com.progdawn.android.collectaholic.fileprovider", mPhotoFile);
 
             getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -152,14 +129,6 @@ public class CollectableFragment extends Fragment {
             }
         });
 
-/*        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
-        mSolvedCheckBox.setChecked(mCrime.isSolved());
-        mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCrime.setSolved(isChecked);
-            }
-        });*/
 
         mShareButton = (Button)v.findViewById(R.id.collectable_share);
         mShareButton.setOnClickListener(new View.OnClickListener() {
@@ -168,29 +137,11 @@ public class CollectableFragment extends Fragment {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_TEXT, getCollectableShare());
-                //i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crime_report_subject));
                 i = Intent.createChooser(i, getString(R.string.send_share));
                 startActivity(i);
             }
         });
 
-/*        final Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        mSuspectButton = (Button)v.findViewById(R.id.crime_suspect);
-        mSuspectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(pickContact, REQUEST_CONTACT);
-            }
-        });
-
-        if(mCrime.getSuspect() != null){
-            mSuspectButton.setText(mCrime.getSuspect());
-        }
-
-        PackageManager packageManager = getActivity().getPackageManager();
-        if(packageManager.resolveActivity(pickContact, PackageManager.MATCH_DEFAULT_ONLY) == null){
-            mSuspectButton.setEnabled(false);
-        }*/
 
         PackageManager packageManager = getActivity().getPackageManager();
         mPhotoButton = (ImageButton)v.findViewById(R.id.collectable_camera);
@@ -230,22 +181,10 @@ public class CollectableFragment extends Fragment {
     }
 
     private String getCollectableShare(){
-/*        String solvedString = null;
-        if(mCollectable.isSolved()){
-            solvedString = getString(R.string.crime_report_solved);
-        }else{
-            solvedString = getString(R.string.crime_report_unsolved);
-        }*/
 
         String dateFormat = "EEE, MMM dd";
         String dateString = DateFormat.format(dateFormat, mCollectable.getDate()).toString();
 
-/*        String suspect = mCollectable.getSuspect();
-        if(suspect == null){
-            suspect = getString(R.string.crime_report_no_suspect);
-        }else{
-            suspect = getString(R.string.crime_report_suspect, suspect);
-        }*/
 
         String report = getString(R.string.collectable_share, mCollectable.getName(), dateString);
 
