@@ -8,6 +8,6 @@ public class CollectableActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collectable);
+        setContentView(R.layout.activity_fragment);
     }
 }

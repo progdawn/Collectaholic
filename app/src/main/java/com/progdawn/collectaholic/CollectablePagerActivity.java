@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class CollectablePagerActivity extends AppCompatActivity{
 
-    private static final String EXTRA_COLLECTABLE_ID = "com.progdawn.android.collectaholics.collectable_id";
+    private static final String EXTRA_COLLECTABLE_ID = "com.progdawn.android.collectaholic.collectable_id";
 
     private ViewPager mViewPager;
     private List<Collectable> mCollectables;
@@ -39,7 +39,7 @@ public class CollectablePagerActivity extends AppCompatActivity{
 
         mViewPager = (ViewPager)findViewById(R.id.collectable_view_pager);
 
-        mCollectables = Collection.get(this).getCollectable();
+        mCollectables = Collection.get(this).getCollectables();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
 

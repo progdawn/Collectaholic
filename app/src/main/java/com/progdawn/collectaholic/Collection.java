@@ -35,11 +35,11 @@ public class Collection {
 
     private Collection(Context context){
         mContext = context.getApplicationContext();
-        mDatabase = new CollectionBaseHelper(mContext)
+        mDatabase = new CollectableBaseHelper(mContext)
                 .getWritableDatabase();
     }
 
-    public List<Collectable> getCrimes(){
+    public List<Collectable> getCollectables(){
         List<Collectable> collectables = new ArrayList<>();
 
         CollectableCursorWrapper cursor = queryCollectables(null, null);
@@ -59,7 +59,7 @@ public class Collection {
 
     public Collectable getCollectable(UUID id){
 
-        CollectableCursorWrapper cursor = queryCrimes(
+        CollectableCursorWrapper cursor = queryCollectables(
                 CollectableTable.Cols.UUID + " = ?",
                 new String[] {id.toString()}
         );
